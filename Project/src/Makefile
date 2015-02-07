@@ -20,7 +20,6 @@ TARGET = calibration
 all: $(TARGET)
 
 $(TARGET): $(TARGET).cpp
-	touch $(TARGET).cpp
 	$(CC) $(CFLAGS) $(CV_FLAGS) -o $(TARGET) $(TARGET).cpp
 
 clean:
