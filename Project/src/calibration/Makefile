@@ -1,3 +1,6 @@
+# the build target executable:
+TARGET = calibration
+
 # the compiler: gcc for C program, define as g++ for C++
 CC = g++
 
@@ -14,8 +17,7 @@ CV_CALIB3D = -lopencv_calib3d
 
 CV_FLAGS = $(CV_CORE) $(CV_HIGHGUI) $(CV_IMGPROG) $(CV_CALIB3D)
 
-# the build target executable:
-TARGET = calibration
+
 
 all: $(TARGET)
 
