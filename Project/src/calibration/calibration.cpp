@@ -39,10 +39,8 @@ int main( int argc, const char** argv )
 	float squareSize = 25.5;
 	Size patternSize(width, height);
 	vector<Point3f> objects;
-	for (int i = 0; i < height; ++i)
-	{
-		for (int j = 0; j < width; ++j)
-		{
+	for (int i = 0; i < height; ++i) {
+		for (int j = 0; j < width; ++j) {
 			objects.push_back(Point3f(float( j*squareSize ), float( i*squareSize ),0));
 		}
 	}
