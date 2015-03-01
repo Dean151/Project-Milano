@@ -10,16 +10,26 @@ using namespace std;
 
 int main( int argc, const char** argv )
 {
-	if (argc != 3 && argc != 4) {
-		cerr << "This program takes two or three parameters" << endl
-			 << "The path of the source video file"          << endl
-			 << "The path of the calibration file"           << endl
-			 << "The number of calibration frames (def: 30)" << endl;
+	if (argc < 3 || argc > 7) {
+		cerr << "This program takes at least 2 parameters :" 		      << endl
+			 << "The path of the source video file"          			  << endl
+			 << "The path of the calibration file"           			  << endl
+			 << "The number of squares of the chessboard width (def: 9)"  << endl
+			 << "The number of squares of the chessboard height (def: 6)" << endl
+			 << "The square size of the chessboard (def: 25.5)"           << endl
+			 << "The number of calibration frames (def: 30)" 			  << endl;
 		return 1;
 	}
 	string videoFile(argv[1]);
 	string calibrationFile(argv[2]);
-	uint nFrames = argc == 4 ? atoi(argv[3]) : 30;
+
+	// Proprietes de l'echiquier
+	int width = argc >= 4 ? atoi(argv[3]) : 9;
+	int height = argc >= 5 ? atoi(argv[3]) : 6;
+	float squareSize = argc >= 6 ? atof(argv[3]) : 25.5;
+
+	// Nb Calibration frames
+	uint nFrames = argc == 7 ? atoi(argv[3]) : 30;
 
 	// Ouverture du fichier video
 	VideoCapture cap(videoFile);
@@ -34,9 +44,8 @@ int main( int argc, const char** argv )
 		cerr << "The specified calibration file path is not valid" << endl;
 		return 1;
 	}
+
 	// Proprietes de l'echiquier
-	int width = 9, height = 6;
-	float squareSize = 25.5;
 	Size patternSize(width, height);
 	vector<Point3f> objects;
 	for (int i = 0; i < height; ++i) {
