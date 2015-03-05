@@ -22,7 +22,7 @@ CV_FLAGS = $(CV_CORE) $(CV_HIGHGUI) $(CV_IMGPROG) $(CV_CALIB3D)
 all: $(TARGET)
 
 $(TARGET): $(TARGET).cpp
-	$(CC) $(CFLAGS) $(CV_FLAGS) -o $(TARGET) $(TARGET).cpp
+	$(CC) $(CFLAGS) $(CV_FLAGS) -o $(TARGET).out $(TARGET).cpp
 
 clean:
 	$(RM) $(TARGET)
