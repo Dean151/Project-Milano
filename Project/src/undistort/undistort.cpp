@@ -1,3 +1,11 @@
+/***************************************
+Undistort algorithm
+Programmed in 2015
+
+USAGE :
+$ undistort inputVideo.xxx calibrationFile.yaml outputVideo.xxx
+*/
+
 #include "opencv2/core/core.hpp"       // Mat, Point2f
 #include "opencv2/highgui/highgui.hpp" // imwrite, VideoCapture
 #include "opencv2/imgproc/imgproc.hpp" // cvtColor, CV_BGR2GRAY
@@ -7,6 +15,7 @@
 
 using namespace cv;
 using namespace std;
+
 
 int main( int argc, const char** argv )
 {
@@ -22,12 +31,15 @@ int main( int argc, const char** argv )
 	string inputVideoFile(argv[1]);
 	string calibrationFile(argv[2]);
 	string outputVideoFile(argv[3]);
+
+	// Opening the input video
 	VideoCapture cap(inputVideoFile);
 	if (!cap.isOpened()) {
 		cerr << "The specified video file is not valid" << endl;
 		return 1;
 	}
 
+	// Opening the calibration file
 	FileStorage fs(calibrationFile, FileStorage::READ);
 	if (!fs.isOpened()) {
 		cerr << "The specified calibration file is not valid" << endl;
@@ -39,13 +51,14 @@ int main( int argc, const char** argv )
 	Size frameSize(cap.get(CV_CAP_PROP_FRAME_WIDTH),
 	               cap.get(CV_CAP_PROP_FRAME_HEIGHT));
 
+	// Initializing the video writer
 	VideoWriter vid(outputVideoFile, fourcc, fps, frameSize);
 	if (!vid.isOpened()) {
 		cerr << "The specified output file is not valid" << endl;
 		return 1;
 	}
 
-	// Recuperation des parametres de la camera
+	// Getting camera informations
 	Mat cameraMatrix, distCoeffs;
 	fs["cameraMatrix"] >> cameraMatrix;
 	fs["distCoeffs"] >> distCoeffs;
@@ -59,7 +72,7 @@ int main( int argc, const char** argv )
 			break;
 		}
 		undistort(image, undist, cameraMatrix, distCoeffs);
-		if (i % 25 == 0) {
+		if (i % 25 == 0) { // We record the first frame of each seconds
 			imwrite("../../out/jpg/" + to_string(i) + ".jpg",undist);
 		}
 		i++;
