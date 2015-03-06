@@ -1,3 +1,12 @@
+/***************************************
+Calibration algorithm
+Programmed in 2015
+
+USAGE :
+$ calibration inputVideo.xxx calibrationFile.yaml
+$ calibration inputVideo.xxx calibrationFile.yaml 6 25.5 30
+*/
+
 #include "opencv2/core/core.hpp"       // Mat, Point2f
 #include "opencv2/highgui/highgui.hpp" // imwrite, VideoCapture
 #include "opencv2/imgproc/imgproc.hpp" // cvtColor, CV_BGR2GRAY
@@ -23,29 +32,29 @@ int main( int argc, const char** argv )
 	string videoFile(argv[1]);
 	string calibrationFile(argv[2]);
 
-	// Proprietes de l'echiquier
+	// Creating chessboard properties from args
 	int width = argc >= 4 ? atoi(argv[3]) : 9;
 	int height = argc >= 5 ? atoi(argv[3]) : 6;
 	float squareSize = argc >= 6 ? atof(argv[3]) : 25.5;
 
-	// Nb Calibration frames
+	// Calibration frame numbers
 	uint nFrames = argc == 7 ? atoi(argv[3]) : 30;
 
-	// Ouverture du fichier video
+	// Opening video file
 	VideoCapture cap(videoFile);
 	if (!cap.isOpened()) {
 		cerr << "The specified video file is not valid" << endl;
 		return 1;
 	}
 
-	// Ouverture du fichier de calibration
+	// Opening calibration file
 	FileStorage fs(calibrationFile,FileStorage::WRITE);
 	if (!fs.isOpened()) {
 		cerr << "The specified calibration file path is not valid" << endl;
 		return 1;
 	}
 
-	// Proprietes de l'echiquier
+	// Chessboard properties
 	Size patternSize(width, height);
 	vector<Point3f> objects;
 	for (int i = 0; i < height; ++i) {
@@ -54,17 +63,17 @@ int main( int argc, const char** argv )
 		}
 	}
 
-	// Objets contenant l'image et sa copie en noir et blanc
+	// Those objects contains the image and a black & white copy
 	Mat image, gray;
 
 	Size imageSize(cap.get(CV_CAP_PROP_FRAME_WIDTH), cap.get(CV_CAP_PROP_FRAME_HEIGHT));
 
 	bool ret;
 
-	// Matrice camera initiale
+	// Initial camera matrix
 	Mat cameraMatrix = Mat::eye(3, 3, CV_64F);
 
-	// Matrice distortion initiale
+	// Initial distort matrix
 	Mat distCoeffs = Mat::zeros(8, 1, CV_64F);
 
 	// Vecteurs de positions de l'echiquier par rapport a la camera
