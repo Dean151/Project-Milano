@@ -120,7 +120,7 @@ int main( int argc, const char** argv )
 					solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvec, tvec, false, CV_ITERATIVE);
 
 					// Writing solution
-					out << "frame" << currentFrame 
+					out << "frame" << currentFrame;
 					out << "rvec" << rvec;
 					out << "tvec" << tvec;
 				} else {
