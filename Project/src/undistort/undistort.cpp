@@ -3,7 +3,7 @@ Undistort algorithm
 Programmed in 2015
 
 USAGE :
-$ undistort inputVideo.xxx calibrationFile.yaml outputVideo.xxx
+$ undistort.out inputVideo.xxx calibrationFile.yaml outputVideo.xxx
 */
 
 #include "opencv2/core/core.hpp"       // Mat, Point2f
