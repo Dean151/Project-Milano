@@ -120,8 +120,9 @@ int main( int argc, const char** argv )
 					solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvec, tvec, false, CV_ITERATIVE);
 
 					// Writing solution
-					out << "frame" << currentFrame << "rvec" << rvec;
-					out << "frame" << currentFrame << "tvec" << tvec;
+					out << "frame" << currentFrame 
+					out << "rvec" << rvec;
+					out << "tvec" << tvec;
 				} else {
 					cerr << "Frame number " << currentFrame << " was ignored" << endl;
 				}
