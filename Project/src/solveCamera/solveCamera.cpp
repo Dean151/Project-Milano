@@ -117,8 +117,7 @@ int main( int argc, const char** argv )
 			case 3:
 				if (imagePoints.size() == objectPoints.size() && objectPoints.size() >= 4) {
 					// Calculating solution
-					solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvec, tvec, false, CV_P3P);
-					// FIXME solvePnp does not like to have more than 4 points
+					solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvec, tvec, false, CV_ITERATIVE);
 
 					// Writing solution
 					out << "frame" << currentFrame << "rvec" << rvec;
