@@ -117,11 +117,11 @@ int main( int argc, const char** argv )
 			case 3:
 				if (imagePoints.size() == objectPoints.size() && objectPoints.size() >= 4) {
 					// Calculating solution
-					solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvec, tvec, false, CV_ITERATIVE);
+					solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvec, tvec, false, CV_EPNP);
 
 					// Writing solution
 					out << "frame" << currentFrame;
-					out << "rvec" << rvec;
+					out << "rvec" << rvec; // FIXME need to use Rodrigues(src, dst, jacobian);
 					out << "tvec" << tvec;
 				} else {
 					cerr << "Frame number " << currentFrame << " was ignored" << endl;
