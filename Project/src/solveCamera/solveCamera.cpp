@@ -63,7 +63,10 @@ int main( int argc, const char** argv )
 
 	// Getting distCoeffs matrix from calibration file
 	Mat distCoeffs(4,1,cv::DataType<double>::type);
-	fs["distCoeffs"] >> distCoeffs;
+	distCoeffs.at<double>(0) = 0;
+	distCoeffs.at<double>(1) = 0;
+	distCoeffs.at<double>(2) = 0;
+	distCoeffs.at<double>(3) = 0;
 
 	// Creating output matrix
 	Mat rvec(3,1,cv::DataType<double>::type);
