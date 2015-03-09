@@ -11,6 +11,7 @@ $ ./solveCamera.out ../../out/calibrationResults/30_02.yaml ../../data/frames.tx
 #include "opencv2/highgui/highgui.hpp" // imwrite, VideoCapture
 #include "opencv2/imgproc/imgproc.hpp" // cvtColor, CV_BGR2GRAY
 #include "opencv2/calib3d/calib3d.hpp" // (find|draw)ChessboardCorners
+#include "math.h"
 #include <string>                      // to_string
 #include <iostream>                    // cout, cerr
 #include <fstream>					   // Read files
@@ -76,6 +77,13 @@ int main( int argc, const char** argv )
 	Mat objectRotationMatrix(3,3,DataType<double>::type);
 	Mat cameraRotationMatrix(3,3,DataType<double>::type);
 	Mat cameraRotationVector(3,1,DataType<double>::type);
+	Mat blenderCameraRotationVector(3,1,DataType<double>::type);
+	Mat halfRotAroundY_V(3,1,DataType<double>::type);
+	halfRotAroundY_V.at<double>(0) = M_PI;
+	halfRotAroundY_V.at<double>(1) = 0;
+	halfRotAroundY_V.at<double>(2) = 0;
+	Mat halfRotAroundY_M(3,3,DataType<double>::type);
+	Rodrigues(halfRotAroundY_V, halfRotAroundY_M);
 	Mat cameraTranslationVector;
 
 	// FIXME initial position shouldn't be written in "hard" in the code
@@ -131,12 +139,17 @@ int main( int argc, const char** argv )
 					Rodrigues(rvec,objectRotationMatrix);
 					transpose(objectRotationMatrix, cameraRotationMatrix);
 					Rodrigues(cameraRotationMatrix, cameraRotationVector);
+
+					Rodrigues(cameraRotationMatrix * halfRotAroundY_M,blenderCameraRotationVector);
 					cameraTranslationVector = -cameraRotationMatrix * tvec;
 					// Writing solution
 					out << "frame" << currentFrame;
 					out << "rvec" << rvec;
 					out << "cameraRotationMatrix" << cameraRotationMatrix;
+					out << "blenderCameraRotationVector" << blenderCameraRotationVector;
+					out << "blenderCameraRotationAngle"  << norm(blenderCameraRotationVector);
 					out << "cameraRotationVector" << cameraRotationVector;
+					out << "cameraRotationAngle" << norm(cameraRotationVector);
 					out << "cameraTranslationVector" << cameraTranslationVector;
 					out << "tvec" << tvec;
 				} else {

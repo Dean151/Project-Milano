@@ -15,12 +15,20 @@ cameraRotationMatrix: !!opencv-matrix
        7.7261501723016837e-02, 9.4718685841709538e-01,
        1.4878910846189725e-02, -9.9617139610290339e-01,
        8.6146198978383479e-02 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.6394247253724927e+00, -2.7313663567392477e-01,
+       -2.2805221764000944e-01 ]
+blenderCameraRotationAngle: 1.6775949647875288e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.4734570462495071e+00, 2.2292313866530150e-01,
        -2.6699357164343568e-01 ]
+cameraRotationAngle: 1.5139537510088048e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -49,12 +57,20 @@ cameraRotationMatrix: !!opencv-matrix
        7.7209419962998099e-02, 9.5503373745870912e-01,
        1.6955157368619023e-02, -9.9618372207932071e-01,
        8.5618423851389236e-02 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.6412039040510478e+00, -2.5302626305449466e-01,
+       -2.0654934470508376e-01 ]
+blenderCameraRotationAngle: 1.6733903239429295e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.4762029352058892e+00, 2.0193286558446363e-01,
        -2.4737100202218562e-01 ]
+cameraRotationAngle: 1.5103457884719962e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -83,12 +99,20 @@ cameraRotationMatrix: !!opencv-matrix
        7.7939124004238636e-02, 9.5300406339264698e-01,
        1.1806738599703243e-02, -9.9630185049933695e-01,
        8.5107130225589508e-02 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.6408125672246721e+00, -2.5468116909597310e-01,
+       -2.1598482625084117e-01 ]
+blenderCameraRotationAngle: 1.6744485133395761e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.4754986053631360e+00, 2.1114783977167131e-01,
        -2.4897757689090905e-01 ]
+cameraRotationAngle: 1.5111814512040809e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -117,12 +141,20 @@ cameraRotationMatrix: !!opencv-matrix
        3.7892648534484950e-02, 9.5763343094056652e-01,
        -1.2259975764205396e-01, -9.9245246401950449e-01,
        2.7214128176150463e-03 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.5771384179924748e+00, -1.3374946667097132e-01,
+       -3.2521174017459969e-01 ]
+blenderCameraRotationAngle: 1.6158642224178263e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.5359368300012510e+00, 3.2338068156329108e-01,
        -1.3299640925498021e-01 ]
+cameraRotationAngle: 1.5752349208411263e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -151,12 +183,20 @@ cameraRotationMatrix: !!opencv-matrix
        4.1058366617975260e-02, 9.5639933794851317e-01,
        -1.3632287098789975e-01, -9.9066359128866588e-01,
        1.3129130435654002e-03 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.5771799634336308e+00, -1.2615115366333318e-01,
+       -3.3953327794385213e-01 ]
+blenderCameraRotationAngle: 1.6182378062134120e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.5341579267057819e+00, 3.3753699308426477e-01,
        -1.2540944834477738e-01 ]
+cameraRotationAngle: 1.5758487540080397e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -185,12 +225,20 @@ cameraRotationMatrix: !!opencv-matrix
        4.4460516754597702e-02, 9.5739052534745384e-01,
        -1.4616494137095226e-01, -9.8925738170833200e-01,
        2.3754261935772683e-03 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.5793579334065975e+00, -1.1571211918726376e-01,
+       -3.4449749941550517e-01 ]
+blenderCameraRotationAngle: 1.6206292924184424e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.5317974817539086e+00, 3.4225900674553777e-01,
        -1.1496023933017752e-01 ]
+cameraRotationAngle: 1.5737727311886269e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -219,12 +267,20 @@ cameraRotationMatrix: !!opencv-matrix
        1.2251810460122445e-01, 9.2271876354933580e-01,
        -1.1120550326037010e-02, -9.9180366847003965e-01,
        1.2728635657374121e-01 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.6785223703542900e+00, -3.0925080508145497e-01,
+       -2.8864198839322980e-01 ]
+blenderCameraRotationAngle: 1.7310076850455951e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.4229356956626500e+00, 2.7869185346893144e-01,
        -2.9859023815168351e-01 ]
+cameraRotationAngle: 1.4803956476227487e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -253,12 +309,20 @@ cameraRotationMatrix: !!opencv-matrix
        1.1925257776056608e-01, 9.2415144776393554e-01,
        -7.0296040911639879e-03, -9.9209906506213785e-01,
        1.2525984899062237e-01 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.6760679129876630e+00, -3.0952270079480848e-01,
+       -2.8336501672770642e-01 ]
+blenderCameraRotationAngle: 1.7278031380800378e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.4260023472637244e+00, 2.7380494920353904e-01,
        -2.9908013468685291e-01 ]
+cameraRotationAngle: 1.4825318787716879e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -287,12 +351,20 @@ cameraRotationMatrix: !!opencv-matrix
        1.1480773658205326e-01, 9.2323602716099040e-01,
        -1.3256774569134377e-02, -9.9290064539240197e-01,
        1.1820561030414189e-01 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.6697657805929766e+00, -3.0703920957420916e-01,
+       -2.9242845400734602e-01 ]
+blenderCameraRotationAngle: 1.7227609349437765e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.4314105358672438e+00, 2.8301646710458728e-01,
        -2.9715696665446489e-01 ]
+cameraRotationAngle: 1.4890724313059438e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -321,12 +393,20 @@ cameraRotationMatrix: !!opencv-matrix
        -1.0953665263727785e-01, -7.3172373376922883e-01,
        -8.8331687723076480e-02, -9.9379757100803667e-01,
        6.7556648840206845e-02 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 6.3459310214522924e-01, 1.8562111174409406e+00,
+       1.6754552763117452e+00 ]
+blenderCameraRotationAngle: 2.5798020274281739e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -7.6014658446031158e-01, -1.7110471779863836e+00,
        1.8956428375909185e+00 ]
+cameraRotationAngle: 2.6643886808931603e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -355,12 +435,20 @@ cameraRotationMatrix: !!opencv-matrix
        -1.5704849472071869e-01, -7.3316980440254842e-01,
        -1.1531962334865936e-01, -9.8749929935724967e-01,
        1.0745472646498400e-01 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 6.1433917645428970e-01, 1.9005881137846667e+00,
+       1.6307520525527717e+00 ]
+blenderCameraRotationAngle: 2.5785655040916007e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -7.6476289922310559e-01, -1.6724288282245290e+00,
        1.9491610310093401e+00 ]
+cameraRotationAngle: 2.6797591687146056e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -389,12 +477,20 @@ cameraRotationMatrix: !!opencv-matrix
        -1.0168925062038625e-01, -7.3106064471272680e-01,
        -8.5404957037826135e-02, -9.9456676211206529e-01,
        5.9522676479549674e-02 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 6.3613934929217719e-01, 1.8470938417604319e+00,
+       1.6825771899888624e+00 ]
+blenderCameraRotationAngle: 2.5782736340927821e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -7.6189556554192150e-01, -1.7183636357775733e+00,
        1.8863793640105331e+00 ]
+cameraRotationAngle: 2.6630218817200784e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -423,12 +519,20 @@ cameraRotationMatrix: !!opencv-matrix
        1.4934303590312920e-01, 9.1674398002768487e-01,
        -1.5200954368358610e-02, -9.8783199406605360e-01,
        1.5478011011036030e-01 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.7059953271428627e+00, -3.1625726801062654e-01,
+       -2.9299240769311191e-01 ]
+blenderCameraRotationAngle: 1.7596258882980311e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.3942186798474319e+00, 2.8071543944701083e-01,
        -3.0300545555741121e-01 ]
+cameraRotationAngle: 1.4541180114684635e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -457,12 +561,20 @@ cameraRotationMatrix: !!opencv-matrix
        1.4702982229135306e-01, 9.1533140197076712e-01,
        -2.0965556940493069e-02, -9.8843551375377758e-01,
        1.5018548722323621e-01 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.7019619273547817e+00, -3.1529694862892860e-01,
+       -3.0198023271887159e-01 ]
+blenderCameraRotationAngle: 1.7570653456638601e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.3971532789860153e+00, 2.8960240015638250e-01,
        -3.0237327875009323e-01 ]
+cameraRotationAngle: 1.4585391440958289e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -491,12 +603,20 @@ cameraRotationMatrix: !!opencv-matrix
        1.4499285252519320e-01, 9.1664874219638837e-01,
        -1.8634587393160179e-02, -9.8868929278643758e-01,
        1.4881610961902259e-01 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.7004597032276165e+00, -3.1443737976473130e-01,
+       -2.9819240233944794e-01 ]
+blenderCameraRotationAngle: 1.7548084729984736e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.3992648479691745e+00, 2.8611266748133252e-01,
        -3.0169956301541428e-01 ]
+cameraRotationAngle: 1.4597346332738605e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -525,12 +645,20 @@ cameraRotationMatrix: !!opencv-matrix
        1.4015392604050853e-01, 9.1593838746256007e-01,
        -2.4440687093701174e-02, -9.8965097181669937e-01,
        1.4139875104345961e-01 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.6937391929305183e+00, -3.1210555086586639e-01,
+       -3.0687935398240757e-01 ]
+blenderCameraRotationAngle: 1.7493819669960216e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.4050645963888158e+00, 2.9495356796192929e-01,
        -2.9997666709728554e-01 ]
+cameraRotationAngle: 1.4666936040228491e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
@@ -559,12 +687,20 @@ cameraRotationMatrix: !!opencv-matrix
        1.4490379879158580e-01, 9.1727749406209436e-01,
        -2.0057271290062878e-02, -9.8877100370609139e-01,
        1.4808648857490439e-01 ]
+blenderCameraRotationVector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ 1.7001811535821405e+00, -3.1187185089766950e-01,
+       -2.9829707176897124e-01 ]
+blenderCameraRotationAngle: 1.7540983864664430e+00
 cameraRotationVector: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    data: [ -1.3998839792215279e+00, 2.8624883902146114e-01,
        -2.9927533218319152e-01 ]
+cameraRotationAngle: 1.4598559098676802e+00
 cameraTranslationVector: !!opencv-matrix
    rows: 3
    cols: 1
