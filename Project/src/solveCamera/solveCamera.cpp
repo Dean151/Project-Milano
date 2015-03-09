@@ -4,7 +4,7 @@ Programmed in 2015
 
 USAGE :
 $ ./solveCamera.out calibration.yaml inputPoints.txt out.yaml
-$ ./solveCamera.out ../../out/calibrationResults/30_02.yaml ../../data/frames.txt out.yaml
+$ ./solveCamera.out ../../out/calibrationResults/30_02.yaml ../../data/frames.txt ../../out/solveCamera/out.yaml
 */
 
 #include "opencv2/core/core.hpp"       // Mat, Point2f
@@ -36,7 +36,7 @@ int main( int argc, const char** argv )
 
 	// Getting args
 	string calibrationFile(argv[1]);
-	string inputPointsFile(argv[2]);	
+	string inputPointsFile(argv[2]);
 	string outYamlFile(argv[3]);
 
 	FileStorage fs(calibrationFile, FileStorage::READ);
