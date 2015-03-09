@@ -73,19 +73,26 @@ int main( int argc, const char** argv )
 	Mat rvec(3,1,DataType<double>::type);
 	Mat tvec(3,1,DataType<double>::type);
 
+	// Declaring the different transformation matrices (and vector representations,
+	// via Rodriguez)
 	// objectRotationMatrix, cameraRotationMatrix and cameraTranslationVector
+	// 
+	// blender uses a unit vector, with different axis conventions for the rotation.
+	// defining the opencv to blender conversion matrice = halfTurnAroundX_V
 	Mat objectRotationMatrix(3,3,DataType<double>::type);
 	Mat cameraRotationMatrix(3,3,DataType<double>::type);
 	Mat cameraRotationVector(3,1,DataType<double>::type);
-	Mat blenderCameraRotationVector(3,1,DataType<double>::type);
-	Mat halfRotAroundY_V(3,1,DataType<double>::type);
-	halfRotAroundY_V.at<double>(0) = M_PI;
-	halfRotAroundY_V.at<double>(1) = 0;
-	halfRotAroundY_V.at<double>(2) = 0;
-	Mat halfRotAroundY_M(3,3,DataType<double>::type);
-	Rodrigues(halfRotAroundY_V, halfRotAroundY_M);
 	Mat cameraTranslationVector;
 
+	Mat blenderCameraRotationVector(3,1,DataType<double>::type);
+
+	Mat halfTurnAroundX_V(3,1,DataType<double>::type);
+	halfTurnAroundX_V.at<double>(0) = M_PI;
+	halfTurnAroundX_V.at<double>(1) = 0;
+	halfTurnAroundX_V.at<double>(2) = 0;
+	Mat halfTurnAroundX_V(3,3,DataType<double>::type);
+	Rodrigues(halfTurnAroundX_V, halfTurnAroundX_M);
+	
 	// FIXME initial position shouldn't be written in "hard" in the code
 	rvec.at<double>(0) = 200;
 	rvec.at<double>(1) = 200;
@@ -136,13 +143,20 @@ int main( int argc, const char** argv )
 					// Calculating solution
 					solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvec, tvec, false, CV_EPNP);
 					
+					// Switching to matrix representation
 					Rodrigues(rvec,objectRotationMatrix);
-					transpose(objectRotationMatrix, cameraRotationMatrix);
-					Rodrigues(cameraRotationMatrix, cameraRotationVector);
 
-					Rodrigues(cameraRotationMatrix * halfRotAroundY_M,blenderCameraRotationVector);
+					// Transposing to get camera rotation instead of object rotation
+					transpose(objectRotationMatrix, cameraRotationMatrix);
+
+					// Switching back to vector representation, openCV and blender
+					Rodrigues(cameraRotationMatrix, cameraRotationVector);
+					Rodrigues(cameraRotationMatrix * halfTurnAroundX_M, blenderCameraRotationVector);
+
+					// Getting camera translation vector: cv = -cm * objv 
 					cameraTranslationVector = -cameraRotationMatrix * tvec;
-					// Writing solution
+					
+					// Output solution
 					out << "frame" << currentFrame;
 					out << "rvec" << rvec;
 					out << "cameraRotationMatrix" << cameraRotationMatrix;
