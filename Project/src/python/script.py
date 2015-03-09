@@ -12,6 +12,7 @@ bpy.ops.import_mesh.stl(filepath="/vagrant/Project/data/GarRep.stl")
 scn = bpy.context.scene
 scn.render.resolution_x = 720
 scn.render.resolution_y = 576
+scn.render.resolution_percentage = 100
 scn.render.pixel_aspect_x = 1 # Unsure of correct value here FIXME
 scn.render.pixel_aspect_x = 1
 
