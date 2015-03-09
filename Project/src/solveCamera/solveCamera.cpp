@@ -4,7 +4,7 @@ Programmed in 2015
 
 USAGE :
 $ ./solveCamera.out calibration.yaml inputPoints.txt out.yaml
-$ ./solveCamera.out ../../out/calibrationResults/30_02.yaml ../../data/frames.txt out.yaml
+$ ./solveCamera.out ../../out/calibrationResults/30_02.yaml ../../data/frames.txt ../../out/solveCamera/out.yaml
 */
 
 #include "opencv2/core/core.hpp"       // Mat, Point2f
@@ -18,10 +18,10 @@ $ ./solveCamera.out ../../out/calibrationResults/30_02.yaml ../../data/frames.tx
 #include <sstream>
 #include <utility>
 
-vector<string> explode(string const & s, char delim);
-
 using namespace cv;
 using namespace std;
+
+vector<string> explode(string const & s, char delim);
 
 int main( int argc, const char** argv )
 {
@@ -36,7 +36,7 @@ int main( int argc, const char** argv )
 
 	// Getting args
 	string calibrationFile(argv[1]);
-	string inputPointsFile(argv[2]);	
+	string inputPointsFile(argv[2]);
 	string outYamlFile(argv[3]);
 
 	FileStorage fs(calibrationFile, FileStorage::READ);
@@ -62,8 +62,11 @@ int main( int argc, const char** argv )
 	fs["cameraMatrix"] >> cameraMatrix;
 
 	// Getting distCoeffs matrix from calibration file
-	Mat distCoeffs(4,1,DataType<double>::type);
-	fs["distCoeffs"] >> distCoeffs;
+	Mat distCoeffs(4,1,cv::DataType<double>::type);
+	distCoeffs.at<double>(0) = 0;
+	distCoeffs.at<double>(1) = 0;
+	distCoeffs.at<double>(2) = 0;
+	distCoeffs.at<double>(3) = 0;
 
 	// Creating output matrix
 	Mat rvec(3,1,DataType<double>::type);
@@ -72,6 +75,7 @@ int main( int argc, const char** argv )
 	// objectRotationMatrix, cameraRotationMatrix and cameraTranslationVector
 	Mat objectRotationMatrix(3,3,DataType<double>::type);
 	Mat cameraRotationMatrix(3,3,DataType<double>::type);
+	Mat cameraRotationVector(3,1,DataType<double>::type);
 	Mat cameraTranslationVector;
 
 	// FIXME initial position shouldn't be written in "hard" in the code

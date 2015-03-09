@@ -3,8 +3,8 @@ Calibration algorithm
 Programmed in 2015
 
 USAGE :
-$ calibration.out inputVideo.xxx calibrationFile.yaml
-$ calibration.out inputVideo.xxx calibrationFile.yaml 9 6 25.5 30
+$ ./calibration.out inputVideo.xxx calibrationFile.yaml
+$ ./calibration.out inputVideo.xxx calibrationFile.yaml 9 6 25.5 30
 */
 
 #include "opencv2/core/core.hpp"       // Mat, Point2f
