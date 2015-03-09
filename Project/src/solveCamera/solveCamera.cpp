@@ -18,7 +18,7 @@ $ ./solveCamera.out ../../out/calibrationResults/30_02.yaml ../../data/frames.tx
 #include <sstream>
 #include <utility>
 
-std::vector<std::string> explode(std::string const & s, char delim);
+vector<string> explode(string const & s, char delim);
 
 using namespace cv;
 using namespace std;
@@ -62,12 +62,17 @@ int main( int argc, const char** argv )
 	fs["cameraMatrix"] >> cameraMatrix;
 
 	// Getting distCoeffs matrix from calibration file
-	Mat distCoeffs(4,1,cv::DataType<double>::type);
+	Mat distCoeffs(4,1,DataType<double>::type);
 	fs["distCoeffs"] >> distCoeffs;
 
 	// Creating output matrix
-	Mat rvec(3,1,cv::DataType<double>::type);
-	Mat tvec(3,1,cv::DataType<double>::type);
+	Mat rvec(3,1,DataType<double>::type);
+	Mat tvec(3,1,DataType<double>::type);
+
+	// objectRotationMatrix, cameraRotationMatrix and cameraTranslationVector
+	Mat objectRotationMatrix(3,3,DataType<double>::type);
+	Mat cameraRotationMatrix(3,3,DataType<double>::type);
+	Mat cameraTranslationVector;
 
 	// FIXME initial position shouldn't be written in "hard" in the code
 	rvec.at<double>(0) = 200;
@@ -103,25 +108,32 @@ int main( int argc, const char** argv )
 
 		switch (mode) {
 			case 0:
-				currentFrame = std::stoi(line);
+				currentFrame = stoi(line);
 				mode = -1;
 				break;
 			case 1:
 				coords = explode(line, ' ');
-				imagePoints.push_back(Point2f(std::stod(coords[0]), std::stod(coords[1])));
+				imagePoints.push_back(Point2f(stod(coords[0]), stod(coords[1])));
 				break;
 			case 2:
 				coords = explode(line, ' ');
-				objectPoints.push_back(Point3f(std::stod(coords[0]), std::stod(coords[1]), std::stod(coords[2])));
+				objectPoints.push_back(Point3f(stod(coords[0]), stod(coords[1]), stod(coords[2])));
 				break;
 			case 3:
 				if (imagePoints.size() == objectPoints.size() && objectPoints.size() >= 4) {
 					// Calculating solution
 					solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvec, tvec, false, CV_EPNP);
-
+					
+					Rodrigues(rvec,objectRotationMatrix);
+					transpose(objectRotationMatrix, cameraRotationMatrix);
+					Rodrigues(cameraRotationMatrix, cameraRotationVector);
+					cameraTranslationVector = -cameraRotationMatrix * tvec;
 					// Writing solution
 					out << "frame" << currentFrame;
-					out << "rvec" << rvec; // FIXME need to use Rodrigues(src, dst, jacobian);
+					out << "rvec" << rvec;
+					out << "cameraRotationMatrix" << cameraRotationMatrix;
+					out << "cameraRotationVector" << cameraRotationVector;
+					out << "cameraTranslationVector" << cameraTranslationVector;
 					out << "tvec" << tvec;
 				} else {
 					cerr << "Frame number " << currentFrame << " was ignored" << endl;
@@ -140,14 +152,14 @@ int main( int argc, const char** argv )
 }
 
 // Explode function
-std::vector<std::string> explode(std::string const & s, char delim)
+vector<string> explode(string const & s, char delim)
 {
-    std::vector<std::string> result;
-    std::istringstream iss(s);
+    vector<string> result;
+    istringstream iss(s);
 
-    for (std::string token; std::getline(iss, token, delim); )
+    for (string token; getline(iss, token, delim); )
     {
-        result.push_back(std::move(token));
+        result.push_back(move(token));
     }
 
     return result;
