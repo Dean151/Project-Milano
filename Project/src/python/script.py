@@ -9,6 +9,11 @@ bpy.ops.import_mesh.stl(filepath="/vagrant/Project/data/GarRep.stl")
 
 # Alias for scene, needed for enabling camera and sun
 scn = bpy.context.scene
+scn.render.resolution_x = 720
+scn.render.resolution_y = 576
+scn.render.pixel_aspect_x = 1 # Unsure of correct value here FIXME
+scn.render.pixel_aspect_x = 1
+
 
 # Creating camera
 cam = bpy.data.cameras.new("magic")
@@ -25,6 +30,11 @@ obj.rotation_axis_angle[3] =-2.2805221764000944e-01
 obj.location.x = -2.7112076513151294e+02
 obj.location.y = -3.7260196389150241e+02
 obj.location.z = -9.3188488777097902e+00
+
+cam.lens = 7.5
+cam.sensor_width = 6.54
+cam.sensor_height = 4.89
+
 cam.clip_end = 500
 
 # Creating sun, at our back
