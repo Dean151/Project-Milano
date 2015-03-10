@@ -1,11 +1,17 @@
 # Project Milano
 
 ## Instructions
+
+### Vagrant Virtual Machine configuration
 * Install Vagrant from [vagrantup.com](https://www.vagrantup.com)
 * Install VirtualBox from [virtualbox.org](https://www.virtualbox.org)
 * Pull from Git
 * In Terminal, use `vagrant up` command in your git folder (make sure you have a good connexion, this could be long)
 * use `vagrant ssh` to connect to virtual machine (in windows call from git bash instead of cmd)
+
+### Updates and Blender installation
+* make sure your VM is up to date with `sudo pacman -Sqyu --noconfirm`
+* now, install Blender : `sudo pacman -S blender` (confirm installation with Y)
 
 > You are connected to the machine, your work directory inside the virtual machine is in `/vagrant` and is synced with your git folder.
 OpenCV, C++ and Python are now available in the virtual machine.
@@ -24,4 +30,13 @@ But we choose those conventions for naming input data :
     * new.avi (0:44 - 166.3Mo)
 
 ## Calibration
-> Brace yourselves, documentation is coming
+> TODO
+
+## Undistorted frames and video calculation
+> TODO
+
+## Solve Camera Pose calculation
+> TODO
+
+## Blender helped rendering with Python
+> TODO
