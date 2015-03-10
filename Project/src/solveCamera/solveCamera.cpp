@@ -90,7 +90,7 @@ int main( int argc, const char** argv )
 	halfTurnAroundX_V.at<double>(0) = M_PI;
 	halfTurnAroundX_V.at<double>(1) = 0;
 	halfTurnAroundX_V.at<double>(2) = 0;
-	Mat halfTurnAroundX_V(3,3,DataType<double>::type);
+	Mat halfTurnAroundX_M(3,3,DataType<double>::type);
 	Rodrigues(halfTurnAroundX_V, halfTurnAroundX_M);
 	
 	// FIXME initial position shouldn't be written in "hard" in the code
