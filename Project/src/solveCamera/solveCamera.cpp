@@ -57,6 +57,7 @@ int main( int argc, const char** argv )
 		cerr << "The specified out file could not be opened or created" << endl;
 		return 1;
 	}
+	out << "framedata" << "[";
 
 	// Getting camera matrix from calibration file
 	Mat cameraMatrix;
@@ -157,6 +158,7 @@ int main( int argc, const char** argv )
 					cameraTranslationVector = -cameraRotationMatrix * tvec;
 					
 					// Output solution
+					out << "{";
 					out << "frame" << currentFrame;
 					out << "rvec" << rvec;
 					out << "cameraRotationMatrix" << cameraRotationMatrix;
@@ -166,6 +168,7 @@ int main( int argc, const char** argv )
 					out << "cameraRotationAngle" << norm(cameraRotationVector);
 					out << "cameraTranslationVector" << cameraTranslationVector;
 					out << "tvec" << tvec;
+					out << "}";
 				} else {
 					cerr << "Frame number " << currentFrame << " was ignored" << endl;
 				}
@@ -178,7 +181,7 @@ int main( int argc, const char** argv )
 				break;
 		}
 	}
-
+	out << "]";
 	return 0;
 }
 
