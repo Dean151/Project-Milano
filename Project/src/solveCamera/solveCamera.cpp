@@ -123,7 +123,7 @@ int main( int argc, const char** argv )
 		}
 		if (line.compare(0, 3, "end") == 0) {
 			mode = 3;
-			continue;
+			getline(pointFile, line);
 		}
 
 		switch (mode) {
