@@ -63,7 +63,7 @@ scn.objects.link(sunObj)
 # or different kind of render should be used
 
 
-for frame in data["framedata"]:
+for frame in yamlData["framedata"]:
     # get blenderCameraRotationAngle
     blenderCameraRotationAngle = frame["blenderCameraRotationAngle"]
     # get blenderCameraRotationVector
