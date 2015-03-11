@@ -27,7 +27,7 @@ bpy.ops.object.select_all(action="SELECT")
 bpy.ops.object.delete()
 
 # Importing STL - FIXME should be a parameter
-bpy.ops.import_mesh.stl(filepath="/vagrant/Project/data/GarRep.stl")
+bpy.ops.import_mesh.stl(filepath="/vagrant/Project/data/stl/GarRep.stl")
 
 # Alias for scene, needed for enabling camera and sun 
 # FIXME resolution should be a parameter

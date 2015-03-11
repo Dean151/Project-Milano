@@ -28,6 +28,11 @@ But we choose those conventions for naming input data :
     * cal_3.avi (0:36 - 142.6Mo)
   * maquette/
     * new.avi (0:44 - 166.3Mo)
+  * stl/
+    * CorsoComoAscii.stl (97.6Mo)
+    * CorsoComoBinary.stl (18.1Mo)
+    * GarRep.stl (9.3Mo)
+
 
 ## Calibration
 > TODO
