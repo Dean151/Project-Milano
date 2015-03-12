@@ -4,7 +4,7 @@ Programmed in 2015
 
 USAGE :
 $ ./calibration.out inputVideo.xxx calibrationFile.yaml
-$ ./calibration.out inputVideo.xxx calibrationFile.yaml 9 6 25.5 30
+$ ./calibration.out inputVideo.xxx calibrationFile.yaml 30 9 6 25.5
 */
 
 #include "opencv2/core/core.hpp"       // Mat, Point2f
@@ -23,22 +23,23 @@ int main( int argc, const char** argv )
 		cerr << "This program takes at least 2 parameters :" 		      << endl
 			 << "The path of the source video file"          			  << endl
 			 << "The path of the calibration file"           			  << endl
+			 << "The number of calibration frames (def: 30)" 			  << endl;
 			 << "The number of squares of the chessboard width (def: 9)"  << endl
 			 << "The number of squares of the chessboard height (def: 6)" << endl
 			 << "The square size of the chessboard (def: 25.5)"           << endl
-			 << "The number of calibration frames (def: 30)" 			  << endl;
+			
 		return 1;
 	}
 	string videoFile(argv[1]);
 	string calibrationFile(argv[2]);
 
 	// Creating chessboard properties from args
-	int width = argc >= 4 ? atoi(argv[3]) : 9;
-	int height = argc >= 5 ? atoi(argv[3]) : 6;
-	float squareSize = argc >= 6 ? atof(argv[3]) : 25.5;
+	int width = argc >= 5 ? atoi(argv[3]) : 9;
+	int height = argc >= 6 ? atoi(argv[3]) : 6;
+	float squareSize = argc >= 7 ? atof(argv[3]) : 25.5;
 
-	// Calibration frame numbers
-	uint nFrames = argc == 7 ? atoi(argv[3]) : 30;
+	// number of frames for calibration
+	uint nFrames = argc == 4 ? atoi(argv[3]) : 30;
 
 	// Opening video file
 	VideoCapture cap(videoFile);
