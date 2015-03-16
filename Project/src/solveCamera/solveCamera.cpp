@@ -26,6 +26,7 @@ vector<string> explode(string const & s, char delim);
 
 int main( int argc, const char** argv )
 {
+	//Show errors with respect to input parameters
 	if (argc != 4)
 	{
 		cerr << "This program takes three parameters" << endl;
@@ -40,18 +41,21 @@ int main( int argc, const char** argv )
 	string inputPointsFile(argv[2]);
 	string outYamlFile(argv[3]);
 
+	// Opening calibration file
 	FileStorage fs(calibrationFile, FileStorage::READ);
 	if (!fs.isOpened()) {
 		cerr << "The specified calibration file is not valid" << endl;
 		return 1;
 	}
 
-	ifstream pointFile(inputPointsFile);  // read only opening
+	// Read only opening
+	ifstream pointFile(inputPointsFile);  
 	if (!pointFile) {
 		cerr << "The specified input point file could not be opened" << endl;
 		return 1;
 	}
 
+	// Opening out file
 	FileStorage out(outYamlFile, FileStorage::WRITE);
 	if (!out.isOpened()) {
 		cerr << "The specified out file could not be opened or created" << endl;
