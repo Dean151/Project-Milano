@@ -77,14 +77,14 @@ int main( int argc, const char** argv )
 	// Initial distort matrix
 	Mat distCoeffs = Mat::zeros(8, 1, CV_64F);
 
-	// Vecteurs de positions de l'echiquier par rapport a la camera
+	// Vectors positions of the chessboard relative to the camera
 	vector<Mat> rvecs, tvecs;
-	// Creation de l'echiquier dans l'espace
+	// Creation of the chessboard in space
 
-	// Critere de fin de la fonction cornerSubpix
+	// Criterion of the end of the function cornerSubpix
 	TermCriteria criteria(TermCriteria::COUNT + TermCriteria::EPS, 30, 0.001);
 
-	// Vecteurs de points image et du repere
+	// Vectors of image points and coordinate
 	vector<vector<Point2f>> imagePoints;
 	vector<vector<Point3f>> objectPoints;
 	while (imagePoints.size() < nFrames) {
@@ -102,6 +102,8 @@ int main( int argc, const char** argv )
 			drawChessboardCorners(image, patternSize, Mat(corners), patternfound);
 		}
 	}
+	// Function: calibrateCamera 
+	// Finds the camera intrinsic and extrinsic parameters from several views of a calibration pattern
 	double error;
 	error = calibrateCamera(objectPoints, imagePoints, imageSize, cameraMatrix, distCoeffs, rvecs, tvecs);
 	fs << "cameraMatrix" << cameraMatrix;
