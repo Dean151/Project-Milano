@@ -1,18 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkginterface;
 
 import java.io.File;
 import java.io.FileWriter;
 
 /**
- *
- * @author Charles
+ * Class to save frame's data in a text file
+ * @author Charles Brandon
  */
-public class Enregistrement {
+public class Save {
+    
+    /**
+     * Save frame's data in a text file
+     * @param str Frame's data
+     */
     public static void Enregistrer(String str){
         try{
             File ff=new File("Frame.txt"); 

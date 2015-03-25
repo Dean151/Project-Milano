@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkginterface;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Charles
+ * A line of text field in the main gui
+ * @author Charles Brandon
  */
-public class Ligne {
+public class Line {
     private javax.swing.JTextField field2Dx;
     private javax.swing.JTextField field2Dy;
     
@@ -22,7 +17,10 @@ public class Ligne {
     private javax.swing.JTextField field3Dy;
     private javax.swing.JTextField field3Dz;
 
-    public Ligne() {
+    /**
+     * Init a line
+     */
+    public Line() {
         this.field2Dx = new javax.swing.JTextField();
         this.field2Dy = new javax.swing.JTextField();
         
