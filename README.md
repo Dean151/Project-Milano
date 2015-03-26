@@ -14,7 +14,7 @@
 * now, install Blender : `sudo pacman -S blender` (confirm installation with Y)
 
 > You are connected to the machine, your work directory inside the virtual machine is in `/vagrant` and is synced with your git folder.
-OpenCV, C++ and Python are now available in the virtual machine.
+OpenCV, C++, Blender and Python are now available in the virtual machine.
 
 ## Input Data.
 Because of the large size of videos, the data folder is ignored.
@@ -32,16 +32,3 @@ But we choose those conventions for naming input data :
     * CorsoComoAscii.stl (97.6Mo)
     * CorsoComoBinary.stl (18.1Mo)
     * GarRep.stl (9.3Mo)
-
-
-## Calibration
-> TODO
-
-## Undistorted frames and video calculation
-> TODO
-
-## Solve Camera Pose calculation
-> TODO
-
-## Blender helped rendering with Python
-> TODO

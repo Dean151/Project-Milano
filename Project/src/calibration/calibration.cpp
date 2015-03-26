@@ -4,7 +4,7 @@ Programmed in 2015
 
 USAGE :
 $ ./calibration.out inputVideo.xxx calibrationFile.yaml
-$ ./calibration.out inputVideo.xxx calibrationFile.yaml 9 6 25.5 30
+$ ./calibration.out inputVideo.xxx calibrationFile.yaml 30 9 6 25.5
 */
 
 #include "opencv2/core/core.hpp"       // Mat, Point2f
@@ -23,22 +23,23 @@ int main( int argc, const char** argv )
 		cerr << "This program takes at least 2 parameters :" 		      << endl
 			 << "The path of the source video file"          			  << endl
 			 << "The path of the calibration file"           			  << endl
+			 << "The number of calibration frames (def: 30)" 			  << endl
 			 << "The number of squares of the chessboard width (def: 9)"  << endl
 			 << "The number of squares of the chessboard height (def: 6)" << endl
-			 << "The square size of the chessboard (def: 25.5)"           << endl
-			 << "The number of calibration frames (def: 30)" 			  << endl;
+			 << "The square size of the chessboard (def: 25.5)"           << endl;
+			
 		return 1;
 	}
 	string videoFile(argv[1]);
 	string calibrationFile(argv[2]);
 
 	// Creating chessboard properties from args
-	int width = argc >= 4 ? atoi(argv[3]) : 9;
-	int height = argc >= 5 ? atoi(argv[3]) : 6;
-	float squareSize = argc >= 6 ? atof(argv[3]) : 25.5;
+	int width = argc >= 5 ? atoi(argv[4]) : 9;
+	int height = argc >= 6 ? atoi(argv[5]) : 6;
+	float squareSize = argc >= 7 ? atof(argv[6]) : 25.5;
 
-	// Calibration frame numbers
-	uint nFrames = argc == 7 ? atoi(argv[3]) : 30;
+	// number of frames for calibration
+	uint nFrames = argc >= 4 ? atoi(argv[3]) : 30;
 
 	// Opening video file
 	VideoCapture cap(videoFile);
@@ -76,14 +77,14 @@ int main( int argc, const char** argv )
 	// Initial distort matrix
 	Mat distCoeffs = Mat::zeros(8, 1, CV_64F);
 
-	// Vecteurs de positions de l'echiquier par rapport a la camera
+	// Vectors positions of the chessboard relative to the camera
 	vector<Mat> rvecs, tvecs;
-	// Creation de l'echiquier dans l'espace
+	// Creation of the chessboard in space
 
-	// Critere de fin de la fonction cornerSubpix
+	// Criterion of the end of the function cornerSubpix
 	TermCriteria criteria(TermCriteria::COUNT + TermCriteria::EPS, 30, 0.001);
 
-	// Vecteurs de points image et du repere
+	// Vectors of image points and coordinate
 	vector<vector<Point2f>> imagePoints;
 	vector<vector<Point3f>> objectPoints;
 	while (imagePoints.size() < nFrames) {
@@ -101,6 +102,8 @@ int main( int argc, const char** argv )
 			drawChessboardCorners(image, patternSize, Mat(corners), patternfound);
 		}
 	}
+	// Function: calibrateCamera 
+	// Finds the camera intrinsic and extrinsic parameters from several views of a calibration pattern
 	double error;
 	error = calibrateCamera(objectPoints, imagePoints, imageSize, cameraMatrix, distCoeffs, rvecs, tvecs);
 	double fovx, fovy, focalLength, aspectRatio;
