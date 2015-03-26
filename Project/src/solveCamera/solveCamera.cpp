@@ -4,7 +4,7 @@ Programmed in 2015
 
 USAGE :
 $ ./solveCamera.out calibration.yaml inputPoints.txt out.yaml
-$ ./solveCamera.out ../../out/calibrationResults/30_02.yaml ../../data/frames.txt ../../out/solveCamera/out.yaml
+$ ./solveCamera.out ../../out/calibrationResults/30_02.yaml ../../data/frames.txt ../../out/solveCamera/out.yaml ignoreDistorsion
 */
 
 #include "opencv2/core/core.hpp"       // Mat, Point2f
@@ -27,13 +27,21 @@ vector<string> explode(string const & s, char delim);
 int main( int argc, const char** argv )
 {
 	//Show errors with respect to input parameters
-	if (argc != 4)
+	if (argc < 4 || argc > 5)
 	{
-		cerr << "This program takes three parameters" << endl;
+		cerr << "This program takes at least three parameters" << endl;
 		cerr << "The path of the input calibration file"   << endl;
 		cerr << "The path of the input points file"    << endl;
 		cerr << "The path of output yaml file"   << endl;
+		cerr << "(optional) ignoreDistorsion flag, to ignore distorsion from yaml calibration file." << endl;
 		return 1;
+	}
+
+	// If there is the fourth argument... (Ugly solution. It should have been an option like --ignore-distorsion, but too complicated for my tiny mind)
+	if (argc == 5) {
+		ignoreDistorsion = true;
+	} else {
+		ignoreDistorsion = false;
 	}
 
 	// Getting args
@@ -69,10 +77,15 @@ int main( int argc, const char** argv )
 
 	// Getting distCoeffs matrix from calibration file
 	Mat distCoeffs(4,1,cv::DataType<double>::type);
-	distCoeffs.at<double>(0) = 0;
-	distCoeffs.at<double>(1) = 0;
-	distCoeffs.at<double>(2) = 0;
-	distCoeffs.at<double>(3) = 0;
+
+	if (ignoreDistorsion) {
+		distCoeffs.at<double>(0) = 0;
+		distCoeffs.at<double>(1) = 0;
+		distCoeffs.at<double>(2) = 0;
+		distCoeffs.at<double>(3) = 0;
+	} else {
+		fs["distCoeffs"] >> distCoeffs; 
+	}
 
 	// Creating output matrix
 	Mat rvec(3,1,DataType<double>::type);
@@ -98,9 +111,9 @@ int main( int argc, const char** argv )
 	Mat halfTurnAroundX_M(3,3,DataType<double>::type);
 	Rodrigues(halfTurnAroundX_V, halfTurnAroundX_M);
 	
-	// FIXME initial position shouldn't be written in "hard" in the code
-	rvec.at<double>(0) = 200;
-	rvec.at<double>(1) = 200;
+	// Initial position for iterative calculation
+	rvec.at<double>(0) = 0;
+	rvec.at<double>(1) = 0;
 	rvec.at<double>(2) = 0;
 
 	// Read corresponding points for solvePnp calculation
