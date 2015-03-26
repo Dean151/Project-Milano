@@ -103,9 +103,15 @@ int main( int argc, const char** argv )
 	}
 	double error;
 	error = calibrateCamera(objectPoints, imagePoints, imageSize, cameraMatrix, distCoeffs, rvecs, tvecs);
+	double fovx, fovy, focalLength, aspectRatio;
+	Point2d principalPoint;
+	calibrationMatrixValues(cameraMatrix, imageSize, 6.54, 4.89, fovx, fovy, focalLength, principalPoint, aspectRatio);
 	fs << "cameraMatrix" << cameraMatrix;
 	fs << "distCoeffs" << distCoeffs;
 	fs << "error" << error;
+	fs << "focalLength" << focalLength;
+	fs << "aspectRatio" << aspectRatio;
+	fs << "principalPoint" << principalPoint;
 	fs.release();
 
 	return 0;
