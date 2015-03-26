@@ -37,7 +37,7 @@ scn.render.resolution_y = 576
 scn.render.resolution_percentage = 100
 
 # fix non square pixels
-scn.render.pixel_aspect_x = 1 # Unsure of correct value here FIXME
+scn.render.pixel_aspect_x = 1.09 # Unsure of correct value here FIXME
 scn.render.pixel_aspect_y = 1
 
 
@@ -48,15 +48,18 @@ scn.objects.link(camObj)
 scn.camera = camObj
 
 # FIXME should camera intrinsic data be hardcoded ?
-cam.lens = 7.5
+cam.lens = 7.52
+cam.senor_fit = "WIDTH"
 cam.sensor_width = 6.54
-cam.sensor_height = 4.89
 
-cam.clip_end = 500
+cam.clip_end = 100000
 
 # Creating sun, at our back
-sun = bpy.data.lamps.new("sunshine", type="SUN")
-sunObj = bpy.data.objects.new("sunshine", sun)
+sun = bpy.data.lamps.new("sunshine", type="HEMI")
+sunObj = bpy.data.objects.new("HEMI", sun)
+sunObj.rotation_mode = 'XYZ'
+sunObj.rotation_euler[0] = 0.4
+sunObj.rotation_euler[1] = 0.4
 scn.objects.link(sunObj)
 
 # FIXME Sun data should be given by yaml parse, or set to be constant,
@@ -81,4 +84,4 @@ for frame in yamlData["framedata"]:
     camObj.location.z = cameraTranslationVector[2]
     #Output Render - FIXME path should be a parameter
     bpy.ops.render.render()
-    bpy.data.images[0].save_render("/vagrant/Project/out/blenderFrames/frame"+str(frame["frame"])+".png")
+    bpy.data.images[0].save_render("/vagrant/Project/out/blenderFrames/frameH"+str(frame["frame"])+".png")
