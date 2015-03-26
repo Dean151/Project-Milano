@@ -38,10 +38,9 @@ int main( int argc, const char** argv )
 	}
 
 	// If there is the fourth argument... (Ugly solution. It should have been an option like --ignore-distorsion, but too complicated for my tiny mind)
+	bool ignoreDistorsion = false;
 	if (argc == 5) {
 		ignoreDistorsion = true;
-	} else {
-		ignoreDistorsion = false;
 	}
 
 	// Getting args
